@@ -18,7 +18,7 @@ print(mask_account_card("Visa Platinum 7000792289606361"))
 
 def get_date(date_str: str) -> str:
     """Функция возвращает строку с датой в формате 'ДД.ММ.ГГГГ'"""
-    new_date_str = f'{date_str[8:10]}.{date_str[5:7]}.{date_str[:4]}'
+    new_date_str = f"{date_str[8:10]}.{date_str[5:7]}.{date_str[:4]}"
     return new_date_str
 
 
