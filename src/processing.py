@@ -27,12 +27,11 @@ def sort_by_date(data_list: list, data_key='date', descending=True) -> list:
      новый список, отсортированный по дате (date)."""
     return sorted(data_list, key=lambda x: datetime.strptime(x[data_key], '%Y-%m-%dT%H:%M:%S.%f'), reverse=descending)
 
-
-
     # Проверка работы кода
 
 
 if __name__ == "__main__":
+
     print(sort_by_date([{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
                         {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
                         {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
