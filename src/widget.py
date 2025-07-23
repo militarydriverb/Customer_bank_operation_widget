@@ -1,4 +1,4 @@
-from src.masks import get_mask_account, get_mask_card_number
+from masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(info_card: str) -> str:
@@ -8,7 +8,7 @@ def mask_account_card(info_card: str) -> str:
     if info_card_split[0] == "Счет":
         result = f"{info_card_split[0]} {get_mask_account(int(number_card))}"
     else:
-        result = f"{info_card_split[0]+" "+info_card_split[1]} {get_mask_card_number(int(number_card))}"
+        result = f"{info_card_split[0]+' '+info_card_split[1]} {get_mask_card_number(int(number_card))}"
     return result
 
 
