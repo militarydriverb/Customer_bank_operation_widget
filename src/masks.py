@@ -7,9 +7,9 @@ def get_mask_card_number(card_number: int) -> str:
     else:
         card_number_str = str(card_number)
         if not card_number_str.isnumeric():
-            return "Неверный номер карты"
+            return "Неверный тип данных"
         if len(card_number_str) == 16:
-            mask_number = f"{card_number_str[:4]} {card_number_str[4:6]} ** **** {card_number_str[12:]}"
+            mask_number = f"{card_number_str[:4]} {card_number_str[4:6]}** **** {card_number_str[12:]}"
             return mask_number
         return "Неверный номер карты"
 
@@ -18,8 +18,8 @@ if __name__ == "__main__":
     print(get_mask_card_number(1234567890123456)) # pragma: no cover
     print(get_mask_card_number(123456789012345)) # pragma: no cover
     print(get_mask_card_number("700079ffffffff")) # pragma: no cover
-    print(get_mask_card_number(""))
-    print(get_mask_card_number(None))
+    print(get_mask_card_number("")) # pragma: no cover
+    print(get_mask_card_number(None)) # pragma: no cover
 
 
 def get_mask_account(account_number: int) -> str:
