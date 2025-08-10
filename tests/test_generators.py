@@ -4,17 +4,19 @@ from src.generators import filter_by_currency, transaction_descriptions, card_nu
 
 
 def test_filter_by_currency(transactions, input_by_currency):
+    """Тестирование корректности фильтра транзакций по заданной валюте"""
     currency, expected = input_by_currency
     assert list(filter_by_currency(transactions, currency)) == expected
-    # for _ in range(2):
-    #     assert next(filter_by_currency(transactions, "USD")) == transactions
 
 
 def test_filter_by_currency_no_currency(transactions):
+    """Тестирование корректности работы функции при отсутствии транзакций в заданной валюте
+    или пустого списка валютны операций"""
     assert list(filter_by_currency(transactions, "EUR")) == []
 
 
 def test_transaction_descriptions(transactions):
+    """Тестирование корректности возврата описания для каждой транзакции"""
     result = list(transaction_descriptions(transactions))
     assert result == [
         "Перевод организации",
@@ -26,6 +28,7 @@ def test_transaction_descriptions(transactions):
 
 
 def test_transaction_description_no_transactions():
+    """Тестирование работы функции в различным количеством транзакций включая пустой список"""
     result = list(transaction_descriptions([]))
     assert result == []
 
@@ -39,17 +42,12 @@ def test_transaction_description_no_transactions():
     ],
 )
 def test_card_number_generator(start, stop, expected):
+    """Тестирование корректности возврата номеров карт в заданном диапазоне и их форматирования"""
     assert list(card_number_generator(start, stop)) == expected
-    # generated_cards = list(card_number_generator(start, stop))
-    #
-    # # Проверяем, что первый и последний номера равны start и stop
-    # first_card = int(generated_cards[0].replace(' ', ''))
-    # last_card = int(generated_cards[-1].replace(' ', ''))
-    #
-    # assert first_card == start, f"Первый номер не равен start: {generated_cards[0]}"
-    # assert last_card == stop, f"Последний номер не равен stop: {generated_cards[-1]}"
+
 
 def test_card_number_generator_digits_number():
+    """Тестирование корректности обработки крайних значений"""
     with pytest.raises(ValueError) as ex_info:
         list(card_number_generator(0, 5))
     assert str(ex_info.value) == 'Число не может быть меньше 1 и больше 9999999999999999'
