@@ -42,4 +42,4 @@ if __name__ == "__main__":
     print(get_mask_account(1234567890123456990987))  # pragma: no cover type: ignore # noqa
     print(get_mask_account(""))  # pragma: no cover type: ignore # noqa
     print(get_mask_account("12345678901234asd"))  # pragma: no cover type: ignore # noqa
-    print(get_mask_account(None))  # pragma: no cover type: ignore # noqa
+    print(get_mask_account(None))  # pragma: no cover type: ignore # noq
