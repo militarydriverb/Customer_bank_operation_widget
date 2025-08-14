@@ -21,12 +21,13 @@ def test_my_function_division_by_zero(capsys):
     result = my_function(4, 0)
     captured = capsys.readouterr()
     assert result is None
-    assert captured.out == f"my_function error: division by zero. Inputs: (4, 0), {{}}\n"
+    assert captured.out == "my_function error: division by zero. Inputs: (4, 0), {}\n"
 
 
 @log(filename="test_log.txt")
 def my_function_sum(x, y):
     return x + y
+
 
 def test_my_function_file_output():
     """Тестирование вывода в файл"""
