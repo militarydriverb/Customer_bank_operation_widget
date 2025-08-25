@@ -163,6 +163,7 @@ my_function error: тип ошибки. Inputs: (1, 2), {},
                                                                      pytest tests/test_processing.py
                                                                      pytest tests/test_generators.py
                                                                      pytest tests/test_decorators.py
+                                                                     pytest tests/test_utils.py
                                                                      pytest tests/tets_external_api.py
 
 3. Покрытие тестами: код покрыт тестами более чем на 80% и есть отчет в формате HTML в папке htmlcov.
