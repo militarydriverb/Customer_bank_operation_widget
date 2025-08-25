@@ -50,7 +50,7 @@ def test_dic_list_json_decode_error() -> None:
         assert dic_list(file_path) == []
     finally:
         if os.path.exists(file_path):
-                os.remove(file_path)
+            os.remove(file_path)
 
 
 def test_dic_list_file_not_found() -> None:
