@@ -13,7 +13,7 @@ def dic_list(path: str) -> list[dict]:
                     return []
             except json.JSONDecodeError:
                 return []
-    except (FileNotFoundError, FileExistsError, TypeError, ValueError):
+    except FileNotFoundError:
         return []
 
 

@@ -1,42 +1,58 @@
-import unittest
-from unittest.mock import mock_open, patch
+import json
+import os
 
 from src.utils import dic_list
 
 
-class TestInputTransaction(unittest.TestCase):
-
-    def test_valid_data(self):
-        """Тестирование успешного выполнения функции"""
-        mock_data = '[{"id": 1, "amount": 100}]'
-        with patch('builtins.open', mock_open(read_data=mock_data)):
-            result = dic_list("path/to/mockfile.json")
-            self.assertEqual(result, [{"id": 1, "amount": 100}])
-
-    def test_not_valid_data(self):
-        """Тестирование выполнения функции при отсутствии данных о транзакциях"""
-        with patch('builtins.open', mock_open(read_data=None)):
-            result = dic_list("path/to/mockfile.json")
-            self.assertEqual(result, [])
-
-    def test_empty_file(self):
-        """Тестирование выполнения функции при пустом файле"""
-        with patch('builtins.open', mock_open(read_data='')):
-            result = dic_list("path/to/mockfile.json")
-            self.assertEqual(result, [])
-
-    def test_file_data_not_list(self):
-        """Тестирование выполнения функции если файл содержит не список транзакций"""
-        with patch('builtins.open', side_effect=TypeError):
-            result = dic_list("path/to/mockfile.json")
-            self.assertEqual(result, [])
-
-    def test_file_not_found(self):
-        """Тестирование выполнения функции если файл не найден"""
-        with patch('builtins.open', side_effect=FileNotFoundError):
-            result = dic_list("path/to/mockfile.json")
-            self.assertEqual(result, [])
+def test_dic_list(transactions) -> None:
+    """Тестирование успешного выполнения функции"""
+    file_path = 'data/test_operation.json'
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file_json:
+            json.dump(transactions, file_json, indent=4, ensure_ascii=False)
+        assert dic_list(file_path) == transactions
+    finally:
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_dic_list_empty_list() -> None:
+    """Тестирование функции, если файл содержит пустой список"""
+    file_path = 'data/test_operation.json'
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file_json:
+            json.dump([], file_json, indent=4, ensure_ascii=False)
+        assert dic_list(file_path) == []
+    finally:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+
+def test_dic_list_not_list() -> None:
+    """Тестирование функции, если передается не список"""
+    file_path = 'data/test_operation.json'
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file_json:
+            json.dump('', file_json, indent=4, ensure_ascii=False)
+        assert dic_list(file_path) == []
+    finally:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+
+def test_dic_list_json_decode_error() -> None:
+    """Тестирование функции, в случае ошибки JSONDecodeError"""
+    file_path = 'data/test_bad_data.json'
+    data_to_write = '{"invalid_key" "invalid_value", "number": 123, "boolean": true'
+    try:
+        with open(file_path, "w", encoding="utf-8") as file_json:
+            file_json.write(data_to_write)
+        assert dic_list(file_path) == []
+    finally:
+        if os.path.exists(file_path):
+                os.remove(file_path)
+
+
+def test_dic_list_file_not_found() -> None:
+    """Тестирование функции, если файл не найден"""
+    assert dic_list('not.json') == []
