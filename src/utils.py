@@ -35,5 +35,5 @@ def dic_list(path: str) -> list[dict]:
 
 
 if __name__ == '__main__':
-    path = '../data/operations.json'  # pragma: no cover
-    print(dic_list(path))  # pragma: no cover
+    path = 'data/operations.json'  # pragma: no cover
+    print(dic_list(path))          # pragma: no cover
