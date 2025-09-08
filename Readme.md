@@ -172,6 +172,13 @@ my_function error: тип ошибки. Inputs: (1, 2), {},
 описывающее событие или ошибку, которые произошли.
 Лог перезаписывается при каждом запуске приложения.
 
+## Реализованы функции загрузки данных о финансовых транзакция из файлов CSV и Excel с библиотекой pandas
+
+Установлена библиотека pandas.
+Функции для считывания финансовых операций из CSV и Excel файлов принимают путь к файлу CSV или Excel 
+в качестве аргумента. Функции выдают списки словарей с транзакциями.
+В функции встроен обработчик ошибки FileNotFoundError через функционал try except.
+
 
 ## Тестирование
 
@@ -184,7 +191,8 @@ my_function error: тип ошибки. Inputs: (1, 2), {},
                                                                      pytest tests/test_generators.py
                                                                      pytest tests/test_decorators.py
                                                                      pytest tests/test_utils.py
-                                                                     pytest tests/tets_external_api.py
+                                                                     pytest tests/test_external_api.py
+                                                                     pytest tests/test_csv_excel_data.py
 
 3. Покрытие тестами: код покрыт тестами более чем на 80% и есть отчет в формате HTML в папке htmlcov.
 
