@@ -15,7 +15,7 @@ def get_csv_data_reading(file_path: str) -> list[dict] | None:
 
 
 if __name__ == '__main__':
-    file_path = 'transactions.csv'              # pragma: no cover
+    file_path = '../transactions.csv'              # pragma: no cover
     result = get_csv_data_reading(file_path)    # pragma: no cover
     pprint(result)                              # pragma: no cover
     print("Конец CSV файла")                    # pragma: no cover
@@ -35,7 +35,7 @@ def get_excel_data_reading(file_path1: str):
 
 
 if __name__ == '__main__':
-    file_path1 = 'transactions_excel.xlsx'       # pragma: no cover
+    file_path1 = '../transactions_excel.xlsx'       # pragma: no cover
     result = get_excel_data_reading(file_path1)  # pragma: no cover
     print(result)                                # pragma: no cover
     print("Конец Excel файла")                   # pragma: no cover
