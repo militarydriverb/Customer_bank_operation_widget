@@ -29,7 +29,8 @@ def process_bank_operations(
             continue
 
         description = str(transaction.get("description", "")).strip().lower()
-        # Если description содержит только мусор (например, "nan", "") — присваиваем "без категории или пустая категория"
+        # Если description содержит только мусор (например, "nan", "")
+        # — присваиваем "без категории или пустая категория"
         if not description or description in ["nan", ""]:
             category = "без категории или пустая категория"
         else:
@@ -47,7 +48,7 @@ def process_bank_operations(
 
 
 if __name__ == "__main__":
-    file_path = "../transactions_excel.xlsx"
+    file_path = "../data/transactions_excel.xlsx"
     data_str = get_excel_data_reading(file_path)
 
     try:

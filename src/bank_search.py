@@ -4,7 +4,7 @@ import re
 from src.csv_excel_data import get_excel_data_reading
 
 
-def process_bank_search(data:list[dict], search:str)->list[dict]:
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
     """
     Функция, которая принимает список словарей с данными о банковских операциях и строку поиска,
      а возвращать список словарей, у которых в описании есть данная строка (поиск нечувствителен к регистру).
@@ -14,7 +14,7 @@ def process_bank_search(data:list[dict], search:str)->list[dict]:
 
     Returns:
         list[dict]: Отфильтрованный список транзакций
-     """
+    """
     if not isinstance(search, str) or not search.strip():
         return []
 
@@ -25,7 +25,7 @@ def process_bank_search(data:list[dict], search:str)->list[dict]:
         if not isinstance(transaction, dict):
             continue  # Пропускаем, если элемент не является словарём
 
-        description = transaction.get('description')
+        description = transaction.get("description")
         if not isinstance(description, (str, float)):
             continue  # Пропускаем, если описание не строка и не число
 
@@ -35,8 +35,8 @@ def process_bank_search(data:list[dict], search:str)->list[dict]:
     return result
 
 
-if __name__ == '__main__':
-    file_path = '../transactions_excel.xlsx'
+if __name__ == "__main__":
+    file_path = "../data/transactions_excel.xlsx"
     data_str = get_excel_data_reading(file_path)  # <-- Это JSON-строка
 
     try:
@@ -53,4 +53,3 @@ if __name__ == '__main__':
     else:
         print("Ошибка: данные не являются списком транзакций.")
         print("Полученные данные:", data)
-
